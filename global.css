@@ -1,0 +1,21 @@
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --table-header-bg: #e0e0e0;
+  --table-hover-bg: #f0f0f0;
+}
+
+body.dark {
+  --bg: #1e1e1e;
+  --fg: #f5f5f5;
+  --table-header-bg: #333333;
+  --table-hover-bg: #444444;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.3s, color 0.3s;
+}
