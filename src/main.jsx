@@ -6,6 +6,7 @@ import { ThemeProvider } from "../ThemeContext.jsx";
 import "../global.css";
 import Home from "./pages/Home/Home.jsx";
 import NotFound from "./components/NotFound/NotFound.jsx";
+import SearchSong from "./pages/SearchSong/SearchSong.jsx";
 
 const root = document.getElementById("root");
 
@@ -17,6 +18,7 @@ ReactDOM.createRoot(root).render(
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="search" element={<SearchSong />} />
           </Route>
         </Routes>
       </BrowserRouter>

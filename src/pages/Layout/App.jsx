@@ -10,7 +10,7 @@ function App() {
         headers={[
           { title: "Home", url: "/" },
           { title: "Log in", url: "/login" },
-          { title: "Register", url: "/register" },
+          { title: "Search Songs", url: "/search" },
         ]}
       />
       <Outlet />

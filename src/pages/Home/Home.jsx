@@ -4,15 +4,14 @@ export default function Home() {
   return (
     <>
       <div className={styles.container}>
-        <h1 className={styles.pageTitle}>The Trucking Company</h1>
+        <h1 className={styles.pageTitle}>The Music API</h1>
         <div className={styles.leftColumn}>
           <p>
             Welcome to <strong>The Music API</strong> - the right place to
             listen to music
           </p>
           <p>
-            <strong>Log in</strong> to create your own playlists to save your
-            favorite music on
+            <strong>Log in</strong> to create your own playlists
           </p>
           <p>
             If you are not yet an user please visit{" "}

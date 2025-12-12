@@ -1,4 +1,4 @@
-export function fetchData(url, callback, method, body) {
+export default function fetchData(url, callback, method, body) {
   const headers = {
     Accept: "application/json",
   };
