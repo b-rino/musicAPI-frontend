@@ -7,6 +7,7 @@ import "../global.css";
 import Home from "./pages/Home/Home.jsx";
 import NotFound from "./components/NotFound/NotFound.jsx";
 import SearchSong from "./pages/SearchSong/SearchSong.jsx";
+import LogIn from "./pages/LogIn/LogIn.jsx";
 
 const root = document.getElementById("root");
 
@@ -19,6 +20,7 @@ ReactDOM.createRoot(root).render(
             <Route index element={<Home />} />
             <Route path="*" element={<NotFound />} />
             <Route path="search" element={<SearchSong />} />
+            <Route path="login" element={<LogIn />} />
           </Route>
         </Routes>
       </BrowserRouter>
