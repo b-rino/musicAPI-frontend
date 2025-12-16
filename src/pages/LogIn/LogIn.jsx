@@ -3,15 +3,22 @@ import { useState } from "react";
 import { useOutletContext, Link } from "react-router-dom";
 
 export default function LogIn() {
-  const { login, logout, username, loggedIn } = useOutletContext();
+  const { doLogin, logout, username, loggedIn } = useOutletContext();
 
   const init = { username: "", password: "" };
   const [loginCredentials, setLoginCredentials] = useState(init);
+  const [error, setError] = useState(null);
 
-  const performLogin = (evt) => {
+  const performLogin = async (evt) => {
     evt.preventDefault();
-    login(loginCredentials.username, loginCredentials.password);
-    setLoginCredentials(init);
+    setError(null);
+    try {
+      await doLogin(loginCredentials.username, loginCredentials.password);
+      setLoginCredentials(init);
+    } catch (err) {
+      console.error("Login error:", err);
+      setError(err?.body?.message || err?.message || "Unexpected error");
+    }
   };
 
   const onChange = (evt) => {
@@ -46,12 +53,13 @@ export default function LogIn() {
             <button type="submit">Login</button>
           </form>
           <div>
-            <Link to="/signup">click here to sign up</Link>
+            <Link to="/register">click here to sign up</Link>
           </div>
+          {error && <p>{error}</p>}
         </>
       ) : (
         <div>
-          <p>You are already logged in as {username}</p>
+          <p>You are logged in as {username}</p>
           <button onClick={logout}>Logout</button>
         </div>
       )}

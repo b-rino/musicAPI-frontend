@@ -7,6 +7,7 @@ export default function Register() {
   const { loggedIn } = useOutletContext();
   const init = { username: "", password: "" };
   const [user, setUser] = useState(init);
+  const [message, setMessage] = useState(null);
 
   const onChange = (evt) => {
     setUser({
@@ -22,13 +23,14 @@ export default function Register() {
       const result = await facade.register(user);
 
       if (result.status === 201) {
-        console.log("Bruger oprettet 🎉");
+        setMessage("User successfully created - please log in");
       }
+      setUser(init);
     } catch (err) {
       if (err.status === 409) {
-        console.log("Username er allerede taget ❌");
+        setMessage("Username already exists");
       } else {
-        console.log("Ukendt fejl", err);
+        console.log("Unknown error!", err);
       }
     }
   };
@@ -44,15 +46,18 @@ export default function Register() {
               id="username"
               onChange={onChange}
               placeholder="Username"
+              value={user.username}
             />
             <input
               type="password"
               id="password"
               onChange={onChange}
               placeholder="Password"
+              value={user.password}
             />
+            <button type="submit">Register</button>
           </form>
-          <button type="submit">Register</button>
+          {message && <p>{message}</p>}
         </div>
       ) : (
         <div>

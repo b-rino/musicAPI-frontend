@@ -15,13 +15,20 @@ function App() {
     setLoggedIn(false);
   };
 
-  const login = (user, pass) => {
-    facade.login(user, pass).then(() => {
-      setLoggedIn(true);
-      const [username, roles] = facade.getUsernameAndRoles();
-      setUserRole(roles);
-      setUsername(username);
-    });
+  const doLogin = async (user, pass) => {
+    // eslint-disable-next-line no-useless-catch
+    try {
+      const res = await facade.login(user, pass); // smider ved 403
+      if (res.status === 200) {
+        setLoggedIn(true);
+        const [username, roles] = facade.getUsernameAndRoles();
+        setUserRole(roles);
+        setUsername(username);
+      }
+      return res;
+    } catch (err) {
+      throw err;
+    }
   };
 
   return (
@@ -33,7 +40,7 @@ function App() {
           { title: "Search Songs", url: "/search" },
         ]}
       />
-      <Outlet context={{ login, logout, userRole, username, loggedIn }} />
+      <Outlet context={{ doLogin, logout, userRole, username, loggedIn }} />
       <Footer />
     </>
   );

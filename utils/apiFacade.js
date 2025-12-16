@@ -37,11 +37,8 @@ const login = (user, password) => {
   return fetch(BASE_URL + "/login", options)
     .then(handleHttpErrors)
     .then((res) => {
-      setToken(res.token);
+      setToken(res.body.token);
       return res;
-    })
-    .catch((err) => {
-      console.log(err);
     });
 };
 
@@ -53,17 +50,11 @@ const register = (user) => {
 const fetchData = (endpoint, method = "GET", addToken = false, body = null) => {
   const options = makeOptions(method, addToken, body);
 
-  return fetch(BASE_URL + endpoint, options).then(async (res) => {
-    const data = await res.json().catch(() => null);
-    if (!res.ok) {
-      throw { status: res.status, body: data };
-    }
-    return { status: res.status, body: data };
-  });
+  return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 };
 
 const makeOptions = (method, addToken, body) => {
-  var opts = {
+  const opts = {
     method: method,
     headers: {
       "Content-type": "application/json",
