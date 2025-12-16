@@ -1,17 +1,30 @@
 import styles from "./SearchSong.module.css";
 import { useEffect, useState } from "react";
-import fetchData from "../../../utils/persistence";
+import facade from "../../../utils/apiFacade";
+
 export default function SearchSong() {
   const [songs, setSongs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (searchTerm) {
-      fetchData(
-        `https://music.brino.dk/api/v1/songs/search?query=${searchTerm}`,
-        (data) => setSongs(data)
-      );
-    }
+    if (!searchTerm) return;
+
+    const fetchSongs = async () => {
+      try {
+        const result = await facade.fetchData(
+          `/songs/search?query=${searchTerm}`,
+          "GET",
+          false
+        );
+        setSongs(result.body);
+      } catch (err) {
+        console.error("Fetch error:", err.status, err.body);
+        setError("Something went wrong while searching.");
+      }
+    };
+
+    fetchSongs();
   }, [searchTerm]);
 
   return (
@@ -29,6 +42,8 @@ export default function SearchSong() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+
+      {error && <p className={styles.error}>{error}</p>}
 
       {songs.length > 0 ? (
         <table className={styles.table}>

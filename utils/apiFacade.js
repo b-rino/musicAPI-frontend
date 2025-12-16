@@ -1,12 +1,20 @@
 const BASE_URL = "https://music.brino.dk/api/v1";
-const LOGIN_ENDPOINT = "/login";
 
 function handleHttpErrors(res) {
   if (!res.ok) {
-    return Promise.reject({ status: res.status, fullError: res.json() });
+    return res.json().then((body) => {
+      throw {
+        status: res.status,
+        body,
+      };
+    });
   }
-  return res.json();
+  return res.json().then((body) => ({
+    status: res.status,
+    body,
+  }));
 }
+
 const setToken = (token) => {
   localStorage.setItem("jwtToken", token);
 };
@@ -26,7 +34,7 @@ const login = (user, password) => {
     username: user,
     password: password,
   });
-  return fetch(BASE_URL + LOGIN_ENDPOINT, options)
+  return fetch(BASE_URL + "/login", options)
     .then(handleHttpErrors)
     .then((res) => {
       setToken(res.token);
@@ -37,9 +45,21 @@ const login = (user, password) => {
     });
 };
 
-const fetchData = (endpoint, method) => {
-  const optionObject = makeOptions(method, true);
-  return fetch(BASE_URL + endpoint, optionObject).then((res) => res.json());
+const register = (user) => {
+  const options = makeOptions("POST", false, user);
+  return fetch(BASE_URL + "/register", options).then(handleHttpErrors);
+};
+
+const fetchData = (endpoint, method = "GET", addToken = false, body = null) => {
+  const options = makeOptions(method, addToken, body);
+
+  return fetch(BASE_URL + endpoint, options).then(async (res) => {
+    const data = await res.json().catch(() => null);
+    if (!res.ok) {
+      throw { status: res.status, body: data };
+    }
+    return { status: res.status, body: data };
+  });
 };
 
 const makeOptions = (method, addToken, body) => {
@@ -89,6 +109,7 @@ const facade = {
   fetchData,
   hasUserAccess,
   getUsernameAndRoles,
+  register,
 };
 
 export default facade;
