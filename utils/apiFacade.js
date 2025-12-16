@@ -40,31 +40,18 @@ const logout = () => {
   localStorage.removeItem("jwtToken");
 };
 
-const login = async (user, password) => {
-  const options = makeOptions("POST", false, {
-    username: user,
-    password: password,
-  });
 
-  try {
-    const res = await safeFetch("/login", "POST", false, {
-      username: user,
-      password: password,
-    });
-    setToken(res.body.token);
-    return res;
-  } catch (err) {
-    throw err; // safeFetch sørger for ensartet fejl
-  }
+//Fejlhåndtering i login og register sker i safeFetch og jeg ikke tilføjer ekstra logging (da jeg ikke har adgang til stacktrace anyways)! 
+const login = async (user, password) => {
+  const res = await safeFetch("/login", "POST", false, { username: user, password });
+  setToken(res.body.token);
+  return res;
 };
 
 const register = async (user) => {
-  try {
-    return await safeFetch("/register", "POST", false, user);
-  } catch (err) {
-    throw err;
-  }
+  return await safeFetch("/register", "POST", false, user);
 };
+
 
        
 

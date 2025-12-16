@@ -34,7 +34,11 @@ function App() {
   ];
 
   const headers = loggedIn
-    ? [...baseHeaders, { title: "Playlists", url: "/playlists" }]
+    ? [
+        ...baseHeaders,
+        { title: "Playlists", url: "/playlists" },
+        ...(userRole === "Admin" ? [{ title: "Admin", url: "/admin" }] : []),
+      ]
     : [...baseHeaders, { title: "Log in", url: "/login" }];
 
   <Header headers={headers} />;
