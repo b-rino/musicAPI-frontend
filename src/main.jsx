@@ -9,6 +9,7 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 import SearchSong from "./pages/SearchSong/SearchSong.jsx";
 import LogIn from "./pages/LogIn/LogIn.jsx";
 import Register from "./pages/Register/Register.jsx";
+import Playlists from "./pages/Playlists/Playlists.jsx";
 
 const root = document.getElementById("root");
 
@@ -23,6 +24,7 @@ ReactDOM.createRoot(root).render(
             <Route path="search" element={<SearchSong />} />
             <Route path="login" element={<LogIn />} />
             <Route path="register" element={<Register />} />
+            <Route path="playlists" element={<Playlists />} />
           </Route>
         </Routes>
       </BrowserRouter>

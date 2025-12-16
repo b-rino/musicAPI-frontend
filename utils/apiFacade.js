@@ -47,6 +47,8 @@ const register = (user) => {
   return fetch(BASE_URL + "/register", options).then(handleHttpErrors);
 };
 
+const getPlaylists = () => { return fetchData("/playlists", "GET", true); };
+
 const fetchData = (endpoint, method = "GET", addToken = false, body = null) => {
   const options = makeOptions(method, addToken, body);
 
@@ -101,6 +103,7 @@ const facade = {
   hasUserAccess,
   getUsernameAndRoles,
   register,
+  getPlaylists,
 };
 
 export default facade;

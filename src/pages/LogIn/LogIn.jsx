@@ -1,10 +1,15 @@
 import styles from "./LogIn.module.css";
 import { useState } from "react";
-import { useOutletContext, Link } from "react-router-dom";
+import {
+  useOutletContext,
+  Link,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 
 export default function LogIn() {
+  const navigate = useNavigate();
   const { doLogin, logout, username, loggedIn } = useOutletContext();
-
   const init = { username: "", password: "" };
   const [loginCredentials, setLoginCredentials] = useState(init);
   const [error, setError] = useState(null);
@@ -15,6 +20,7 @@ export default function LogIn() {
     try {
       await doLogin(loginCredentials.username, loginCredentials.password);
       setLoginCredentials(init);
+      navigate("/");
     } catch (err) {
       console.error("Login error:", err);
       setError(err?.body?.message || err?.message || "Unexpected error");

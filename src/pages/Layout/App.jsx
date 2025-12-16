@@ -38,6 +38,7 @@ function App() {
           { title: "Home", url: "/" },
           { title: "Log in", url: "/login" },
           { title: "Search Songs", url: "/search" },
+          { title: "Playlists", url: "/playlists" },
         ]}
       />
       <Outlet context={{ doLogin, logout, userRole, username, loggedIn }} />
