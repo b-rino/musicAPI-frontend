@@ -15,6 +15,17 @@ function handleHttpErrors(res) {
   }));
 }
 
+function extractErrorMessage(err, fallback = "Could not connect to server. Please try again later.") {
+  if (err?.body?.message) {
+    return err.body.message;
+  } //undefined er falsy! 
+  if (err?.message) {
+    return err.message;
+  }
+  return fallback;
+}
+
+
 const setToken = (token) => {
   localStorage.setItem("jwtToken", token);
 };
@@ -29,25 +40,39 @@ const logout = () => {
   localStorage.removeItem("jwtToken");
 };
 
-const login = (user, password) => {
+const login = async (user, password) => {
   const options = makeOptions("POST", false, {
     username: user,
     password: password,
   });
-  return fetch(BASE_URL + "/login", options)
-    .then(handleHttpErrors)
-    .then((res) => {
-      setToken(res.body.token);
-      return res;
+
+  try {
+    const res = await safeFetch("/login", "POST", false, {
+      username: user,
+      password: password,
     });
+    setToken(res.body.token);
+    return res;
+  } catch (err) {
+    throw err; // safeFetch sørger for ensartet fejl
+  }
 };
 
-const register = (user) => {
-  const options = makeOptions("POST", false, user);
-  return fetch(BASE_URL + "/register", options).then(handleHttpErrors);
+const register = async (user) => {
+  try {
+    return await safeFetch("/register", "POST", false, user);
+  } catch (err) {
+    throw err;
+  }
 };
 
-const getPlaylists = () => { return fetchData("/playlists", "GET", true); };
+       
+
+const getPlaylists = () => {
+   return safeFetch("/playlists", "GET", true); };
+
+const searchSongs = (query) => { 
+  return safeFetch(`/songs/search?query=${query}`, "GET", false); };
 
 const fetchData = (endpoint, method = "GET", addToken = false, body = null) => {
   const options = makeOptions(method, addToken, body);
@@ -92,6 +117,18 @@ const hasUserAccess = (neededRole, loggedIn) => {
   );
 };
 
+
+
+  async function safeFetch(endpoint, method = "GET", addToken = false, body = null) {
+     try {
+       return await fetchData(endpoint, method, addToken, body);
+       } catch (err) {
+         console.error("API error:", err.status, err.body);
+          throw err; //Konventionen er normalt at smide et Error-objekt (for at få adgang til .stack og .message osv), men jeg har sikret i min backend at sende fyldstgørende fejlmeddelelser og derfor sender jeg bare det videre!
+        }
+    }
+
+
 const facade = {
   makeOptions,
   setToken,
@@ -104,6 +141,8 @@ const facade = {
   getUsernameAndRoles,
   register,
   getPlaylists,
+  searchSongs,
+  extractErrorMessage,
 };
 
 export default facade;

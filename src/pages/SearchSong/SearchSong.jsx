@@ -10,21 +10,10 @@ export default function SearchSong() {
   useEffect(() => {
     if (!searchTerm) return;
 
-    const fetchSongs = async () => {
-      try {
-        const result = await facade.fetchData(
-          `/songs/search?query=${searchTerm}`,
-          "GET",
-          false
-        );
-        setSongs(result.body);
-      } catch (err) {
-        console.error("Fetch error:", err.status, err.body);
-        setError("Something went wrong while searching.");
-      }
-    };
-
-    fetchSongs();
+    facade
+      .searchSongs(searchTerm)
+      .then((res) => setSongs(res.body))
+      .catch((err) => setError(facade.extractErrorMessage(err)));
   }, [searchTerm]);
 
   return (

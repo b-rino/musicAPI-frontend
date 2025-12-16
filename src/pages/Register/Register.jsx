@@ -18,6 +18,7 @@ export default function Register() {
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
+    setMessage(null);
 
     try {
       const result = await facade.register(user);
@@ -27,11 +28,12 @@ export default function Register() {
       }
       setUser(init);
     } catch (err) {
-      if (err.status === 409) {
-        setMessage("Username already exists");
-      } else {
-        console.log("Unknown error!", err);
-      }
+      setMessage(
+        facade.extractErrorMessage(
+          err,
+          "Registration failed. Please try again."
+        )
+      );
     }
   };
 
@@ -47,6 +49,7 @@ export default function Register() {
               onChange={onChange}
               placeholder="Username"
               value={user.username}
+              required
             />
             <input
               type="password"
@@ -54,6 +57,7 @@ export default function Register() {
               onChange={onChange}
               placeholder="Password"
               value={user.password}
+              minLength={8}
             />
             <button type="submit">Register</button>
           </form>

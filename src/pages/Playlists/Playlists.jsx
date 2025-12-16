@@ -9,14 +9,15 @@ export default function Playlists() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!loggedIn) return;
+    if (!loggedIn) {
+      setPlaylists([]);
+      return;
+    }
     facade
       .getPlaylists()
       .then((res) => setPlaylists(res.body))
-      .catch((err) =>
-        setError(err?.body?.message || err?.message || "Unexpected error")
-      );
-  }, []);
+      .catch((err) => setError(facade.extractErrorMessage(err)));
+  }, [loggedIn]);
 
   return (
     <div className={styles.container}>

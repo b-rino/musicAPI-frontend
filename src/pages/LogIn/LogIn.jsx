@@ -6,6 +6,7 @@ import {
   Navigate,
   useNavigate,
 } from "react-router-dom";
+import facade from "../../../utils/apiFacade";
 
 export default function LogIn() {
   const navigate = useNavigate();
@@ -23,7 +24,9 @@ export default function LogIn() {
       navigate("/");
     } catch (err) {
       console.error("Login error:", err);
-      setError(err?.body?.message || err?.message || "Unexpected error");
+      setError(
+        facade.extractErrorMessage(err, "Login failed. Please try again.")
+      );
     }
   };
 
@@ -47,6 +50,7 @@ export default function LogIn() {
               autoComplete="username"
               onChange={onChange}
               value={loginCredentials.username}
+              required
             />
             <input
               placeholder="Password"
@@ -55,6 +59,7 @@ export default function LogIn() {
               autoComplete="current-password"
               onChange={onChange}
               value={loginCredentials.password}
+              required
             />
             <button type="submit">Login</button>
           </form>
