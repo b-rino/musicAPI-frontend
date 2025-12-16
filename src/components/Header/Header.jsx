@@ -7,7 +7,7 @@ export default function Header({ headers }) {
 
   return (
     <div className={styles.header}>
-      <nav>
+      <nav className={styles.nav}>
         {headers.map((header, index) => (
           <NavLink
             key={index}
@@ -19,7 +19,7 @@ export default function Header({ headers }) {
         ))}
       </nav>
       <button onClick={toggleTheme} className={styles.themeButton}>
-        Switch to {theme === "light" ? "Dark" : "Light"} Mode
+        {theme === "light" ? "🌙" : "☀️"}
       </button>
     </div>
   );

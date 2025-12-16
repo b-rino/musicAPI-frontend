@@ -31,16 +31,20 @@ function App() {
     }
   };
 
+  const baseHeaders = [
+    { title: "Home", url: "/" },
+    { title: "Search Songs", url: "/search" },
+  ];
+
+  const headers = loggedIn
+    ? [...baseHeaders, { title: "Playlists", url: "/playlists" }]
+    : [...baseHeaders, { title: "Log in", url: "/login" }];
+
+  <Header headers={headers} />;
+
   return (
     <>
-      <Header
-        headers={[
-          { title: "Home", url: "/" },
-          { title: "Log in", url: "/login" },
-          { title: "Search Songs", url: "/search" },
-          { title: "Playlists", url: "/playlists" },
-        ]}
-      />
+      <Header headers={headers} />
       <Outlet context={{ doLogin, logout, userRole, username, loggedIn }} />
       <Footer />
     </>
