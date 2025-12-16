@@ -10,7 +10,7 @@ export default function Playlists() {
 
   useEffect(() => {
     if (!loggedIn) {
-      setPlaylists([]);
+      setPlaylists([]); //advarer om uendeligt loop, men det er ikke tilfældet her. Kan dog splittes i to useEffects for at undgå warning!
       return;
     }
     facade
@@ -23,7 +23,6 @@ export default function Playlists() {
     <div className={styles.container}>
       {" "}
       <h1 className={styles.pageTitle}>Playlists</h1>
-      <h2 className={styles.username}>{username}'s Playlists</h2>
       {error && <p className={styles.error}>{error}</p>}{" "}
       {loggedIn ? (
         playlists.map((playlist) => (

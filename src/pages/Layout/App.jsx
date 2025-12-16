@@ -13,10 +13,12 @@ function App() {
   const logout = () => {
     facade.logout();
     setLoggedIn(false);
+    setUserRole("");
+    setUsername("");
   };
 
   const doLogin = async (user, pass) => {
-    const res = await facade.login(user, pass); // smider ved 403
+    const res = await facade.login(user, pass);
     if (res.status === 200) {
       setLoggedIn(true);
       const [username, roles] = facade.getUsernameAndRoles();
