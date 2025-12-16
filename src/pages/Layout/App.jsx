@@ -44,7 +44,7 @@ function App() {
 
   return (
     <>
-      <Header headers={headers} />
+      <Header headers={headers} loggedIn={loggedIn} logout={logout} />
       <Outlet context={{ doLogin, logout, userRole, username, loggedIn }} />
       <Footer />
     </>

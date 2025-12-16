@@ -60,4 +60,25 @@
    cursor: pointer; color: #ffffff; 
   flex-shrink: 0;
   }
-    
+
+  
+  .actions {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* afstand mellem logout og theme */
+}
+
+.logoutButton {
+  background: none;
+  border: 1px solid #fff;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.logoutButton:hover {
+  background-color: #ff4444;
+  border-color: #ff4444;
+}
+  

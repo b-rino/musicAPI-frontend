@@ -2,7 +2,7 @@ import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import { useTheme } from "../../../ThemeContext";
 
-export default function Header({ headers }) {
+export default function Header({ headers, loggedIn, logout }) {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -18,9 +18,16 @@ export default function Header({ headers }) {
           </NavLink>
         ))}
       </nav>
-      <button onClick={toggleTheme} className={styles.themeButton}>
-        {theme === "light" ? "🌙" : "☀️"}
-      </button>
+      <div className={styles.actions}>
+        {loggedIn && (
+          <button onClick={logout} className={styles.logoutButton}>
+            Logout
+          </button>
+        )}
+        <button onClick={toggleTheme} className={styles.themeButton}>
+          {theme === "light" ? "🌙" : "☀️"}
+        </button>
+      </div>
     </div>
   );
 }

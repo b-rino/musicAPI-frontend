@@ -41,7 +41,7 @@ export default function LogIn() {
         <>
           <form onSubmit={performLogin}>
             <input
-              placeholder="User Name"
+              placeholder="Username"
               id="username"
               type="text"
               autoComplete="username"
