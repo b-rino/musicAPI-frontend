@@ -7,8 +7,8 @@ export default function Home() {
         <h1 className={styles.pageTitle}>The Music API</h1>
         <div className={styles.leftColumn}>
           <p>
-            Welcome to <strong>The Music API</strong> - the right place to
-            listen to music
+            Welcome to <strong>The Music API</strong> - the right place to find
+            your favorite music
           </p>
           <p>
             <strong>Log in</strong> to create your own playlists
