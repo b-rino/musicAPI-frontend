@@ -22,7 +22,7 @@ function App() {
     if (res.status === 200) {
       setLoggedIn(true);
       const [username, roles] = facade.getUsernameAndRoles();
-      setUserRole(roles);
+      setUserRole(roles[0]);
       setUsername(username);
     }
     return res;
@@ -40,8 +40,6 @@ function App() {
         ...(userRole === "Admin" ? [{ title: "Admin", url: "/admin" }] : []),
       ]
     : [...baseHeaders, { title: "Log in", url: "/login" }];
-
-  <Header headers={headers} />;
 
   return (
     <>

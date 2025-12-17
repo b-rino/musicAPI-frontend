@@ -1,0 +1,64 @@
+.container {
+  padding: 1rem;
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.playlistList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.playlistItem {
+  margin-bottom: 1.5rem;
+}
+
+.songTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.songTable th,
+.songTable td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.songTable th {
+  background-color: #f0f4f8;
+  font-weight: bold;
+}
+
+.songTable tr:hover {
+  background-color: #f9fafb;
+}
+
+.deleteBtn {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: #c9302c;
+}
+
+.adminBtn {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.adminBtn:hover {
+  background-color: #449d44;
+}

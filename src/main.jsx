@@ -11,6 +11,7 @@ import LogIn from "./pages/LogIn/LogIn.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Playlists from "./pages/Playlists/Playlists.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
+import UserDetail from "./pages/UserDetail/UserDetail.jsx";
 
 const root = document.getElementById("root");
 
@@ -27,6 +28,7 @@ ReactDOM.createRoot(root).render(
             <Route path="register" element={<Register />} />
             <Route path="playlists" element={<Playlists />} />
             <Route path="admin" element={<Admin />} />
+            <Route path="admin/users/:username" element={<UserDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>

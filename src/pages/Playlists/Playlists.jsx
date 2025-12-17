@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import facade from "../../../utils/apiFacade";
 
 export default function Playlists() {
-  const { username, loggedIn } = useOutletContext();
+  const { loggedIn } = useOutletContext();
   const [playlists, setPlaylists] = useState([]);
   const [error, setError] = useState(null);
 
@@ -25,34 +25,38 @@ export default function Playlists() {
       <h1 className={styles.pageTitle}>Playlists</h1>
       {error && <p className={styles.error}>{error}</p>}{" "}
       {loggedIn ? (
-        playlists.map((playlist) => (
-          <div key={playlist.id} className={styles.playlistBlock}>
-            {" "}
-            <h2>
-              {playlist.name} ({playlist.songs.length} songs)
-            </h2>{" "}
-            <table className={styles.playlistTable}>
+        playlists.length > 0 ? (
+          playlists.map((playlist) => (
+            <div key={playlist.id} className={styles.playlistBlock}>
               {" "}
-              <thead>
+              <h2>
+                {playlist.name} ({playlist.songs.length} songs)
+              </h2>{" "}
+              <table className={styles.playlistTable}>
                 {" "}
-                <tr>
+                <thead>
                   {" "}
-                  <th>Title</th> <th>Artist</th> <th>Album</th>{" "}
-                </tr>{" "}
-              </thead>{" "}
-              <tbody>
-                {" "}
-                {playlist.songs.map((song) => (
-                  <tr key={song.id}>
+                  <tr>
                     {" "}
-                    <td>{song.title}</td> <td>{song.artist}</td>{" "}
-                    <td>{song.album}</td>{" "}
-                  </tr>
-                ))}{" "}
-              </tbody>{" "}
-            </table>{" "}
-          </div>
-        ))
+                    <th>Title</th> <th>Artist</th> <th>Album</th>{" "}
+                  </tr>{" "}
+                </thead>{" "}
+                <tbody>
+                  {" "}
+                  {playlist.songs.map((song) => (
+                    <tr key={song.id}>
+                      {" "}
+                      <td>{song.title}</td> <td>{song.artist}</td>{" "}
+                      <td>{song.album}</td>{" "}
+                    </tr>
+                  ))}{" "}
+                </tbody>{" "}
+              </table>{" "}
+            </div>
+          ))
+        ) : (
+          <p>Currently no playlists!</p>
+        )
       ) : (
         <p>Please log in to view your playlists.</p>
       )}

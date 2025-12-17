@@ -1,8 +1,27 @@
+import { useEffect } from "react";
 import styles from "./Admin.module.css";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
+import facade from "../../../utils/apiFacade";
+import { useState } from "react";
 
 export default function Admin() {
+  const navigate = useNavigate();
+
   const { userRole, loggedIn } = useOutletContext();
+  const [users, setUsers] = useState([]);
+  const [error, setError] = useState([]);
+
+  useEffect(() => {
+    if (userRole !== "Admin") {
+      setUsers([]);
+      return;
+    }
+
+    facade
+      .getUsers()
+      .then((res) => setUsers(res.body))
+      .catch((err) => setError(facade.extractErrorMessage(err)));
+  }, [userRole]);
 
   if (!loggedIn || userRole !== "Admin") {
     return (
@@ -17,7 +36,46 @@ export default function Admin() {
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Admin Panel</h1>
-      <p>Welcome to the admin panel. Here you can manage the application.</p>
+      {error && <p className={styles.error}>{error}</p>}
+      <table className={styles.userTable}>
+        {" "}
+        <thead>
+          {" "}
+          <tr>
+            {" "}
+            <th>Username</th> <th>Roles</th> <th>Playlists</th>{" "}
+          </tr>{" "}
+        </thead>{" "}
+        <tbody>
+          {" "}
+          {users.map((u) => (
+            <tr
+              key={u.username}
+              className={styles.clickableRow}
+              onClick={() => navigate(`/admin/users/${u.username}`)}
+            >
+              {" "}
+              <td>{u.username}</td> <td>{u.roles.join(", ")}</td>{" "}
+              <td>
+                {" "}
+                {u.playlists.length > 0 ? (
+                  <ul>
+                    {" "}
+                    {u.playlists.map((p) => (
+                      <li key={p.id}>
+                        {" "}
+                        {p.name} ({p.songs.length} songs){" "}
+                      </li>
+                    ))}{" "}
+                  </ul>
+                ) : (
+                  "No playlists"
+                )}{" "}
+              </td>{" "}
+            </tr>
+          ))}{" "}
+        </tbody>{" "}
+      </table>
     </div>
   );
 }
