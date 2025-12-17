@@ -1,23 +1,79 @@
 .container {
-  display: grid;
-  grid-template-rows: auto auto 1fr;
-  grid-template-columns: 1fr 1fr;
-  height: 90vh;
+  padding: 2rem;
 }
 
 .pageTitle {
-  font-size: 2.5rem;
-  grid-column: 1 / span 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2%;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
 }
 
-.username {
-  font-size: 1.5rem;
-  grid-column: 1 / span 2;
+.error {
+  color: #d9534f;
+  margin-bottom: 1rem;
+}
+
+.playlistBlock {
+  margin-bottom: 2rem;
+}
+
+.playlistBlock h2 {
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+/* Tabel styling */
+.playlistTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.playlistTable th,
+.playlistTable td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.playlistTable th {
+  background-color: #f4f6f8;
+  font-weight: bold;
+  color: #222;
+}
+
+.playlistTable tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.playlistTable tr:hover {
+  background-color: #eef3f7;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.playlistForm {
   display: flex;
-  justify-content: center;
-  padding-bottom: 1%;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.playlistInput {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.playlistBtn {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.playlistBtn:hover {
+  background-color: #449d44;
 }

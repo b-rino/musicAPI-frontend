@@ -7,6 +7,7 @@ export default function Playlists() {
   const { loggedIn } = useOutletContext();
   const [playlists, setPlaylists] = useState([]);
   const [error, setError] = useState(null);
+  const [newPlaylist, setNewPlaylist] = useState("");
 
   useEffect(() => {
     if (!loggedIn) {
@@ -19,10 +20,38 @@ export default function Playlists() {
       .catch((err) => setError(facade.extractErrorMessage(err)));
   }, [loggedIn]);
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    facade
+      .createPlaylist(newPlaylist)
+      .then((res) => {
+        setPlaylists((prev) => [...prev, res.body]);
+        setNewPlaylist("");
+      })
+      .catch((err) => setError(facade.extractErrorMessage(err)));
+  };
+
   return (
     <div className={styles.container}>
       {" "}
       <h1 className={styles.pageTitle}>Playlists</h1>
+      {loggedIn && (
+        <form className={styles.playlistForm} onSubmit={onSubmit}>
+          <input
+            type="text"
+            id="newPlaylist"
+            minLength={1}
+            required
+            value={newPlaylist}
+            onChange={(e) => setNewPlaylist(e.target.value)}
+            placeholder="Playlist Name"
+            className={styles.playlistInput}
+          />
+          <button type="submit" className={styles.playlistBtn}>
+            Create Playlist
+          </button>
+        </form>
+      )}
       {error && <p className={styles.error}>{error}</p>}{" "}
       {loggedIn ? (
         playlists.length > 0 ? (

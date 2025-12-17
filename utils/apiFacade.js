@@ -74,6 +74,9 @@ const searchSongs = (query) => {
   return safeFetch(`/songs/search?query=${query}`, "GET", false);
 };
 
+const createPlaylist = (name) =>
+  safeFetch("/playlists", "POST", true, { name });
+
 const deleteUser = (username) => {
   return safeFetch(`/admin/users/${username}`, "DELETE", true);
 };
@@ -163,6 +166,7 @@ const facade = {
   deleteUser,
   addRole,
   getUser,
+  createPlaylist,
 };
 
 export default facade;
