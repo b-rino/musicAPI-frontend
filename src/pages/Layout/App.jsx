@@ -39,7 +39,7 @@ function App() {
         ...baseHeaders,
         { title: "Playlists", url: "/playlists" },
         ...(userRoles.includes("Admin")
-          ? [{ title: "Admin", url: "/admin" }]
+          ? [{ title: "Admin Panel", url: "/admin" }]
           : []),
       ]
     : [...baseHeaders, { title: "Log in", url: "/login" }];

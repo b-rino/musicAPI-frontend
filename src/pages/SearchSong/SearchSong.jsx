@@ -61,7 +61,7 @@ export default function SearchSong() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.pageTitle}>Search Song</div>
+      <h1 className={styles.pageTitle}>Search Song</h1>
       <div>
         <label htmlFor="search">
           Please type the name of the song or the artist
