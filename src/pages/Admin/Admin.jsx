@@ -7,12 +7,12 @@ import { useState } from "react";
 export default function Admin() {
   const navigate = useNavigate();
 
-  const { userRole, loggedIn } = useOutletContext();
+  const { userRoles, loggedIn } = useOutletContext();
   const [users, setUsers] = useState([]);
   const [error, setError] = useState([]);
 
   useEffect(() => {
-    if (userRole !== "Admin") {
+    if (!userRoles.includes("Admin")) {
       setUsers([]);
       return;
     }
@@ -21,9 +21,9 @@ export default function Admin() {
       .getUsers()
       .then((res) => setUsers(res.body))
       .catch((err) => setError(facade.extractErrorMessage(err)));
-  }, [userRole]);
+  }, [userRoles]);
 
-  if (!loggedIn || userRole !== "Admin") {
+  if (!loggedIn || !userRoles.includes("Admin")) {
     return (
       <div className={styles.container}>
         <h1 className={styles.pageTitle}>Access Denied</h1>

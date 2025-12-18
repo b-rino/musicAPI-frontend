@@ -1,15 +1,33 @@
 .container {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   height: 90vh;
 }
 
 .pageTitle {
   font-size: 2.5rem;
-  grid-column: 1 / span 2;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2%;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputForm input {
+  max-width: 20vw;
+  margin: 10px;
+}
+
+.inputForm button {
+  margin: 10px;
+  max-width: 20vw;
+}
+
+.registerLink {
+  margin: 10px;
 }

@@ -20,6 +20,7 @@ export default function SearchSong() {
   }, [searchTerm]);
 
   useEffect(() => {
+    if (!facade.loggedIn()) return;
     facade
       .getPlaylists()
       .then((res) => setPlaylists(res.body))

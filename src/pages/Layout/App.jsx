@@ -8,13 +8,13 @@ import facade from "../../../utils/apiFacade";
 function App() {
   //Startede med at initialiserer som "false", men det gav mismatch mellem jwt-token og loggedIn state ved hard refresh!
   const [loggedIn, setLoggedIn] = useState(facade.loggedIn());
-  const [userRole, setUserRole] = useState("");
+  const [userRoles, setUserRoles] = useState([]);
   const [username, setUsername] = useState("");
 
   const logout = () => {
     facade.logout();
     setLoggedIn(false);
-    setUserRole("");
+    setUserRoles([]);
     setUsername("");
   };
 
@@ -23,7 +23,7 @@ function App() {
     if (res.status === 200) {
       setLoggedIn(true);
       const [username, roles] = facade.getUsernameAndRoles();
-      setUserRole(roles[0]);
+      setUserRoles(roles);
       setUsername(username);
     }
     return res;
@@ -38,14 +38,16 @@ function App() {
     ? [
         ...baseHeaders,
         { title: "Playlists", url: "/playlists" },
-        ...(userRole === "Admin" ? [{ title: "Admin", url: "/admin" }] : []),
+        ...(userRoles.includes("Admin")
+          ? [{ title: "Admin", url: "/admin" }]
+          : []),
       ]
     : [...baseHeaders, { title: "Log in", url: "/login" }];
 
   return (
     <>
       <Header headers={headers} loggedIn={loggedIn} logout={logout} />
-      <Outlet context={{ doLogin, logout, userRole, username, loggedIn }} />
+      <Outlet context={{ doLogin, logout, userRoles, username, loggedIn }} />
       <Footer />
     </>
   );

@@ -42,7 +42,7 @@ export default function LogIn() {
       <h1 className={styles.pageTitle}>Login</h1>
       {!loggedIn ? (
         <>
-          <form onSubmit={performLogin}>
+          <form className={styles.inputForm} onSubmit={performLogin}>
             <input
               placeholder="Username"
               id="username"
@@ -63,7 +63,7 @@ export default function LogIn() {
             />
             <button type="submit">Login</button>
           </form>
-          <div>
+          <div className={styles.registerLink}>
             <Link to="/register">click here to sign up</Link>
           </div>
           {error && <p>{error}</p>}
