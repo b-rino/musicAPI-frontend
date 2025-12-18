@@ -6,7 +6,8 @@ import { useState } from "react";
 import facade from "../../../utils/apiFacade";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  //Startede med at initialiserer som "false", men det gav mismatch mellem jwt-token og loggedIn state ved hard refresh!
+  const [loggedIn, setLoggedIn] = useState(facade.loggedIn());
   const [userRole, setUserRole] = useState("");
   const [username, setUsername] = useState("");
 

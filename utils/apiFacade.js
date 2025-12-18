@@ -91,6 +91,11 @@ const getUser = (username) => {
   return safeFetch(`/admin/users/${username}`, "GET", true);
 };
 
+const addSongToPlaylist = (playlistId, externalId) =>
+  safeFetch(`/playlists/${playlistId}/songs/by-external`, "POST", true, {
+    externalId: externalId,
+  });
+
 const fetchData = (endpoint, method = "GET", addToken = false, body = null) => {
   const options = makeOptions(method, addToken, body);
 
@@ -167,6 +172,7 @@ const facade = {
   addRole,
   getUser,
   createPlaylist,
+  addSongToPlaylist,
 };
 
 export default facade;
