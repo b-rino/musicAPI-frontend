@@ -21,7 +21,7 @@
 .table td,
 .table th {
   border: 1px solid #ccc;
-  padding: 8px; /* du havde skrevet 'paddin' før */
+  padding: 8px;
   text-align: center;
 }
 

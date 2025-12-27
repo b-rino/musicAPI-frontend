@@ -10,6 +10,16 @@ export default function Admin() {
   const { userRoles, loggedIn } = useOutletContext();
   const [users, setUsers] = useState([]);
   const [error, setError] = useState([]);
+  const [songs, setSongs] = useState([]);
+
+  useEffect(() => {
+    if (!userRoles.includes("Admin")) return;
+
+    facade
+      .getLocalSongs()
+      .then((res) => setSongs(res.body))
+      .catch((err) => setError(facade.extractErrorMessage(err)));
+  }, []);
 
   useEffect(() => {
     if (!userRoles.includes("Admin")) {
@@ -37,44 +47,59 @@ export default function Admin() {
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Admin Panel</h1>
       {error && <p className={styles.error}>{error}</p>}
+      <h2>Users</h2>
       <table className={styles.userTable}>
-        {" "}
         <thead>
-          {" "}
           <tr>
-            {" "}
-            <th>Username</th> <th>Roles</th> <th>Playlists</th>{" "}
-          </tr>{" "}
-        </thead>{" "}
+            <th>Username</th>
+            <th>Roles</th>
+            <th>Playlists</th>
+          </tr>
+        </thead>
         <tbody>
-          {" "}
           {users.map((u) => (
             <tr
               key={u.username}
               className={styles.clickableRow}
               onClick={() => navigate(`/admin/users/${u.username}`)}
             >
-              {" "}
-              <td>{u.username}</td> <td>{u.roles.join(", ")}</td>{" "}
+              <td>{u.username}</td>
+              <td>{u.roles.join(", ")}</td>
               <td>
-                {" "}
                 {u.playlists.length > 0 ? (
                   <ul>
-                    {" "}
                     {u.playlists.map((p) => (
                       <li key={p.id}>
-                        {" "}
-                        {p.name} ({p.songs.length} songs){" "}
+                        {p.name} - {p.songs.length} song(s)
                       </li>
-                    ))}{" "}
+                    ))}
                   </ul>
                 ) : (
                   "No playlists"
-                )}{" "}
-              </td>{" "}
+                )}
+              </td>
             </tr>
-          ))}{" "}
-        </tbody>{" "}
+          ))}
+        </tbody>
+      </table>
+      <h2>Local Songs</h2>
+      <table className={styles.userTable}>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>External ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {songs.map((song) => (
+            <tr key={song.externalId}>
+              <td>{song.title}</td>
+              <td>{song.artist}</td>
+              <td>{song.album}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );

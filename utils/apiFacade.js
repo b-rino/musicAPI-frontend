@@ -70,6 +70,10 @@ const getPlaylists = () => {
   return safeFetch("/playlists", "GET", true);
 };
 
+const getLocalSongs = () => {
+  return safeFetch("/admin/songs", "GET", true);
+};
+
 const searchSongs = (query) => {
   return safeFetch(`/songs/search?query=${query}`, "GET", false);
 };
@@ -173,6 +177,7 @@ const facade = {
   getUser,
   createPlaylist,
   addSongToPlaylist,
+  getLocalSongs,
 };
 
 export default facade;

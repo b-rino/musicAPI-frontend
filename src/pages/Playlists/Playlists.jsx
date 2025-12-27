@@ -33,7 +33,6 @@ export default function Playlists() {
 
   return (
     <div className={styles.container}>
-      {" "}
       <h1 className={styles.pageTitle}>Playlists</h1>
       {loggedIn && (
         <form className={styles.playlistForm} onSubmit={onSubmit}>
@@ -52,35 +51,27 @@ export default function Playlists() {
           </button>
         </form>
       )}
-      {error && <p className={styles.error}>{error}</p>}{" "}
+      {error && <p className={styles.error}>{error}</p>}
       {loggedIn ? (
         playlists.length > 0 ? (
           playlists.map((playlist) => (
             <div key={playlist.id} className={styles.playlistBlock}>
-              {" "}
-              <h2>
-                {playlist.name} ({playlist.songs.length} songs)
-              </h2>{" "}
+              <h2>{playlist.name}</h2>
               <table className={styles.playlistTable}>
-                {" "}
                 <thead>
-                  {" "}
                   <tr>
-                    {" "}
-                    <th>Title</th> <th>Artist</th> <th>Album</th>{" "}
-                  </tr>{" "}
-                </thead>{" "}
+                    <th>Title</th> <th>Artist</th> <th>Album</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  {" "}
                   {playlist.songs.map((song) => (
                     <tr key={song.id}>
-                      {" "}
-                      <td>{song.title}</td> <td>{song.artist}</td>{" "}
-                      <td>{song.album}</td>{" "}
+                      <td>{song.title}</td> <td>{song.artist}</td>
+                      <td>{song.album}</td>
                     </tr>
-                  ))}{" "}
-                </tbody>{" "}
-              </table>{" "}
+                  ))}
+                </tbody>
+              </table>
             </div>
           ))
         ) : (
