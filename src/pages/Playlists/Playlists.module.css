@@ -78,3 +78,9 @@
 .playlistBtn:hover {
   background-color: #449d44;
 }
+
+.playlistHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

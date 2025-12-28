@@ -2,6 +2,7 @@ import styles from "./Playlists.module.css";
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import facade from "../../../utils/apiFacade";
+import PlaylistOptions from "../../components/PlaylistDropDown/PlaylistOptions";
 
 export default function Playlists() {
   const { loggedIn } = useOutletContext();
@@ -31,6 +32,26 @@ export default function Playlists() {
       .catch((err) => setError(facade.extractErrorMessage(err)));
   };
 
+  const renamePlaylist = (playlist, newName) => {
+    facade
+      .renamePlaylist(playlist.id, newName)
+      .then(() => {
+        setPlaylists((prev) =>
+          prev.map((p) => (p.id === playlist.id ? { ...p, name: newName } : p))
+        );
+      })
+      .catch((err) => setError(facade.extractErrorMessage(err)));
+  };
+
+  const deletePlaylist = (id) => {
+    facade
+      .deletePlaylist(id)
+      .then(() => {
+        setPlaylists((prev) => prev.filter((p) => p.id !== id));
+      })
+      .catch((err) => setError(facade.extractErrorMessage(err)));
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Playlists</h1>
@@ -56,17 +77,30 @@ export default function Playlists() {
         playlists.length > 0 ? (
           playlists.map((playlist) => (
             <div key={playlist.id} className={styles.playlistBlock}>
-              <h2>{playlist.name}</h2>
+              <div className={styles.playlistHeader}>
+                <h2>{playlist.name}</h2>
+                <PlaylistOptions
+                  playlist={playlist}
+                  onRename={(p) => {
+                    const newName = prompt("Enter new name:", p.name);
+                    if (newName) renamePlaylist(p, newName);
+                  }}
+                  onDelete={deletePlaylist}
+                />
+              </div>
               <table className={styles.playlistTable}>
                 <thead>
                   <tr>
-                    <th>Title</th> <th>Artist</th> <th>Album</th>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Album</th>
                   </tr>
                 </thead>
                 <tbody>
                   {playlist.songs.map((song) => (
                     <tr key={song.id}>
-                      <td>{song.title}</td> <td>{song.artist}</td>
+                      <td>{song.title}</td>
+                      <td>{song.artist}</td>
                       <td>{song.album}</td>
                     </tr>
                   ))}
