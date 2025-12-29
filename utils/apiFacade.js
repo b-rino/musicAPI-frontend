@@ -105,6 +105,9 @@ const renamePlaylist = (id, name) =>
 
 const deletePlaylist = (id) => safeFetch(`/playlists/${id}`, "DELETE", true);
 
+const deleteSongFromPlaylist = (playlistId, songId) =>
+  safeFetch(`/playlists/${playlistId}/songs/${songId}`, "DELETE", true);  
+
 const fetchData = (endpoint, method = "GET", addToken = false, body = null) => {
   const options = makeOptions(method, addToken, body);
 
@@ -185,6 +188,7 @@ const facade = {
   getLocalSongs,
   renamePlaylist,
   deletePlaylist,
+  deleteSongFromPlaylist,
 };
 
 export default facade;

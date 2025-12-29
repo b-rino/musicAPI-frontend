@@ -52,6 +52,23 @@ export default function Playlists() {
       .catch((err) => setError(facade.extractErrorMessage(err)));
   };
 
+  const removeSong = (playlistId, songId) => {
+    if (!window.confirm("Remove this song from the playlist?")) return;
+
+    facade
+      .deleteSongFromPlaylist(playlistId, songId)
+      .then(() => {
+        setPlaylists((prev) =>
+          prev.map((p) =>
+            p.id === playlistId
+              ? { ...p, songs: p.songs.filter((s) => s.id !== songId) }
+              : p
+          )
+        );
+      })
+      .catch((err) => setError(facade.extractErrorMessage(err)));
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Playlists</h1>
@@ -85,7 +102,11 @@ export default function Playlists() {
                     const newName = prompt("Enter new name:", p.name);
                     if (newName) renamePlaylist(p, newName);
                   }}
-                  onDelete={deletePlaylist}
+                  onDelete={(id) => {
+                    if (window.confirm(`Delete playlist "${playlist.name}"?`)) {
+                      deletePlaylist(id);
+                    }
+                  }}
                 />
               </div>
               <table className={styles.playlistTable}>
@@ -94,6 +115,7 @@ export default function Playlists() {
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Album</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -102,6 +124,13 @@ export default function Playlists() {
                       <td>{song.title}</td>
                       <td>{song.artist}</td>
                       <td>{song.album}</td>
+                      <td>
+                        <button
+                          onClick={() => removeSong(playlist.id, song.id)}
+                        >
+                          Remove
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
