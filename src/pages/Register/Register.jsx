@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import styles from "./Register.module.css";
-import facade from "../../../utils/apiFacade";
+import facade from "../../utils/apiFacade";
 
 export default function Register() {
   const { loggedIn } = useOutletContext();

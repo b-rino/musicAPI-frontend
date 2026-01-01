@@ -1,7 +1,7 @@
 import styles from "./Playlists.module.css";
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import facade from "../../../utils/apiFacade";
+import facade from "../../utils/apiFacade";
 import PlaylistOptions from "../../components/PlaylistDropDown/PlaylistOptions";
 
 export default function Playlists() {

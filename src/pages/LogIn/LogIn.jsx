@@ -6,7 +6,7 @@ import {
   Navigate,
   useNavigate,
 } from "react-router-dom";
-import facade from "../../../utils/apiFacade";
+import facade from "../../utils/apiFacade";
 
 export default function LogIn() {
   const navigate = useNavigate();

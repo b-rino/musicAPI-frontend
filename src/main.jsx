@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import App from "./pages/Layout/App.jsx";
-import { ThemeProvider } from "../ThemeContext.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 import "../global.css";
 import Home from "./pages/Home/Home.jsx";
 import NotFound from "./components/NotFound/NotFound.jsx";

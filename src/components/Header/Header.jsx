@@ -1,6 +1,6 @@
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
-import { useTheme } from "../../../ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function Header({ headers, loggedIn, logout }) {
   const { theme, toggleTheme } = useTheme();

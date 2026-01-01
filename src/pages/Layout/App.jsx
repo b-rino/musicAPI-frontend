@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { useState } from "react";
-import facade from "../../../utils/apiFacade";
+import facade from "../../utils/apiFacade";
 
 function App() {
   //Startede med at initialiserer som "false", men det gav mismatch mellem jwt-token og loggedIn state ved hard refresh!

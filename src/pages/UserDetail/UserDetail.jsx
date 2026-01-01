@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import facade from "../../../utils/apiFacade";
+import facade from "../../utils/apiFacade";
 import styles from "./UserDetail.module.css";
 
 export default function UserDetail() {

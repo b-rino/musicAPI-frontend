@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styles from "./Admin.module.css";
 import { useOutletContext, useNavigate } from "react-router-dom";
-import facade from "../../../utils/apiFacade";
+import facade from "../../utils/apiFacade";
 import { useState } from "react";
 
 export default function Admin() {
