@@ -4,18 +4,22 @@ export default function Home() {
   return (
     <>
       <div className={styles.container}>
-        <h1 className={styles.pageTitle}>The Music API</h1>
+        <h1 className={styles.pageTitle}>The Music Hub</h1>
         <div className={styles.leftColumn}>
-          <p>
-            Welcome to <strong>The Music API</strong> - the right place to find
-            your favorite music
+          <h3>
+            Welcome to <strong>The Music Hub</strong>
+          </h3>
+          <br></br>
+          <p className={styles.cursive}>
+            Discover music. Build playlists. Explore your personal music
+            library.
           </p>
+          <br></br>
           <p>
-            <strong>Log in</strong> to create your own playlists
-          </p>
-          <p>
-            If you are not yet an user please visit{" "}
-            <strong>Register User</strong>
+            The Music Hub is a custom-built music platform featuring user
+            authentication, playlist management, and live track search powered
+            by an external music API. Log in to explore your playlists — or
+            create an account to get started.
           </p>
         </div>
         <div className={styles.rightColumn}>

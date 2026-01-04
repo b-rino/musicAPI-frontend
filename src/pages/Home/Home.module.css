@@ -35,5 +35,13 @@
 .image {
   max-width: 300px;
   max-height: 300px;
-  background-color: white;
+}
+
+:global(body.dark) .image {
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+.cursive {
+  font-family: cursive;
+  font-style: italic;
 }

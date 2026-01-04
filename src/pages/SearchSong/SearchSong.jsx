@@ -72,6 +72,7 @@ export default function SearchSong() {
           placeholder="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.inputField}
         />
       </div>
 
