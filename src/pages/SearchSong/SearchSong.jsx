@@ -62,10 +62,7 @@ export default function SearchSong() {
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Search Song</h1>
-      <div>
-        <label htmlFor="search">
-          Please type the name of the song or the artist
-        </label>
+      <div className={styles.inputContainer}>
         <input
           type="text"
           id="search"
@@ -102,7 +99,9 @@ export default function SearchSong() {
           </tbody>
         </table>
       ) : (
-        <p>Search a song or artist!</p>
+        <p>
+          <strong>Search a song, artist or album</strong>
+        </p>
       )}
 
       {selectedSong && (

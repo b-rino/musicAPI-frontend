@@ -19,15 +19,32 @@
 }
 
 .inputForm input {
-  max-width: 20vw;
-  margin: 10px;
+  width: 100%;
+  max-width: 300px; /* matcher SearchSong */
+  padding: 0.5rem;
+  margin: 10px auto; /* centrerer */
+  display: block; /* kræves for margin auto */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: black;
 }
 
 .inputForm button {
-  margin: 10px;
-  max-width: 20vw;
+  width: 100%;
+  font-weight: bold;
+  max-width: 300px;
+  padding: 0.5rem;
+  margin: 10px auto;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: green;
+  color: var(--fg);
+  cursor: pointer;
 }
 
 .registerLink {
+  font-size: 1.25rem;
   margin: 10px;
 }

@@ -25,32 +25,27 @@
 
 /* Tabel styling */
 .playlistTable {
-  width: 100%;
+  margin-top: 10px;
+  border: 1px solid;
   border-collapse: collapse;
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
+  width: 100%;
 }
 
 .playlistTable th,
 .playlistTable td {
-  border: 1px solid #ddd;
-  padding: 0.75rem;
-  text-align: left;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
 }
 
 .playlistTable th {
-  background-color: #f4f6f8;
+  background-color: var(--table-header-bg);
+  color: var(--fg);
   font-weight: bold;
-  color: #222;
 }
 
 .playlistTable tr:nth-child(even) {
   background-color: #fafafa;
-}
-
-.playlistTable tr:hover {
-  background-color: #eef3f7;
-  transition: background-color 0.2s ease-in-out;
 }
 
 .playlistForm {
