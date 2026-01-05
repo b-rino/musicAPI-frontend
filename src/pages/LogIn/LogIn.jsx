@@ -10,7 +10,7 @@ import facade from "../../utils/apiFacade";
 
 export default function LogIn() {
   const navigate = useNavigate();
-  const { doLogin, logout, username, loggedIn } = useOutletContext();
+  const { doLogin, logout, loggedIn } = useOutletContext();
   const init = { username: "", password: "" };
   const [loginCredentials, setLoginCredentials] = useState(init);
   const [error, setError] = useState(null);
@@ -70,7 +70,7 @@ export default function LogIn() {
         </>
       ) : (
         <div>
-          <p>You are logged in as {username}</p>
+          <p>You are already logged in!</p>
           <button onClick={logout}>Logout</button>
         </div>
       )}
