@@ -17,6 +17,8 @@ export default function UserDetail() {
   }, [username]);
 
   const deleteUser = () => {
+    if (!window.confirm("Are you sure you want to delete this user?")) return;
+
     facade
       .deleteUser(username)
       .then(() => navigate("/admin"))
@@ -24,6 +26,11 @@ export default function UserDetail() {
   };
 
   const makeAdmin = () => {
+    if (
+      !window.confirm("Are you sure you want to give this user admin rights?")
+    )
+      return;
+
     facade
       .addRole(username, "Admin")
       .then(() => facade.getUser(username)) //backend leverer ikke opdateret User tilbage, men blot en success-besked - derfor må jeg hente på ny!

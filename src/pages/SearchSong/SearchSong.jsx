@@ -110,6 +110,7 @@ export default function SearchSong() {
             <h3>Add "{selectedSong.title}" to a playlist</h3>
 
             <select
+              className={styles.playlistList}
               value={selectedPlaylist}
               onChange={(e) => setSelectedPlaylist(e.target.value)}
             >
