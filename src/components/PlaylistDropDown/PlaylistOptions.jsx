@@ -10,7 +10,7 @@ export default function PlaylistOptions({ playlist, onRename, onDelete }) {
         className={styles.menuButton}
         onClick={() => setOpen((prev) => !prev)}
       >
-        ⋮
+        ✏️
       </button>
 
       {open && (

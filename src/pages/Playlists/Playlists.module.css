@@ -83,6 +83,6 @@ table tr:nth-child(even) {
 
 .playlistHeader {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
 }
