@@ -48,7 +48,7 @@ export default function Admin() {
       <h1 className={styles.pageTitle}>Admin Panel</h1>
       {error && <p className={styles.error}>{error}</p>}
       <h2>Users</h2>
-      <table className={styles.userTable}>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Username</th>
@@ -83,7 +83,7 @@ export default function Admin() {
         </tbody>
       </table>
       <h2>Local Songs</h2>
-      <table className={styles.userTable}>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Title</th>
