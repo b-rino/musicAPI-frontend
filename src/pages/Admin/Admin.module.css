@@ -11,8 +11,6 @@
   padding: 2%;
 }
 
-/* Admin.module.css */
-
 .userTable {
   width: 100%;
   border-collapse: collapse;
@@ -29,7 +27,7 @@
 }
 
 .userTable th {
-  background-color: #2c3e50; /* mørk header */
+  background-color: #2c3e50;
   color: #fff;
   font-weight: 600;
 }

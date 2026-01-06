@@ -1,15 +1,19 @@
 :root {
   --bg: #e6e5d8;
   --fg: #000000;
-  --table-header-bg: #e0e0e0;
-  --table-hover-bg: #f0f0f0;
+  --table-bg: #ffffff;
+  --table-header-bg: #b99f9f;
+  --table-hover-bg: #dbdbdb;
+  --table-row-even: #f3efef;
 }
 
 body.dark {
   --bg: #1e1e1e;
   --fg: #f5f5f5;
-  --table-header-bg: #333333;
-  --table-hover-bg: #444444;
+  --table-bg: #080808;
+  --table-header-bg: #685353;
+  --table-hover-bg: #929292;
+  --table-row-even: #3a3a3a;
 }
 
 body {

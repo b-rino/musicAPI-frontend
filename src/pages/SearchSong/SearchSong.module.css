@@ -13,6 +13,7 @@
 }
 
 .table {
+  background-color: var(--table-bg);
   margin-top: 10px;
   border: 1px solid;
   border-collapse: collapse;

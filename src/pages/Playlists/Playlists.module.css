@@ -23,11 +23,11 @@
 
 .playlistBlock h2 {
   margin-bottom: 0.5rem;
-  color: #444;
 }
 
 /* Tabel styling */
 .playlistTable {
+  background-color: var(--table-bg);
   margin-top: 10px;
   border: 1px solid;
   border-collapse: collapse;
@@ -47,8 +47,8 @@
   font-weight: bold;
 }
 
-.playlistTable tr:nth-child(even) {
-  background-color: #fafafa;
+table tr:nth-child(even) {
+  background-color: var(--table-row-even);
 }
 
 .playlistForm {
@@ -58,10 +58,15 @@
 }
 
 .playlistInput {
-  flex: 1;
-  padding: 0.5rem;
+  font-size: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  padding: 0.2rem;
+  margin: 0.5rem auto;
+  margin-bottom: 2%;
+  display: block;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
 .playlistBtn {
