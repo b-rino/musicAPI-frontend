@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2%;
+  padding: 4%;
 }
 
 form {
@@ -30,7 +30,6 @@ form input {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-
 
 form button {
   width: 100%;

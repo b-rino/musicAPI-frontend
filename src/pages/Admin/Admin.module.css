@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2%;
+  padding: 4%;
 }
 
 .userTable {
@@ -41,6 +41,11 @@
   background-color: var(--table-hover-bg);
 }
 
+.userTable ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
 
 .songsTable {
   background-color: var(--table-bg);
@@ -67,23 +72,20 @@
   background-color: var(--table-row-even);
 }
 
-
 .error {
   color: #c0392b;
   font-weight: bold;
   margin-top: 1rem;
 }
 
-
 .clickableRow {
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .clickableRow:hover {
-  background-color: var(--table-row-hover); 
+  background-color: var(--table-row-hover);
 }
 
 .divider {
   margin-top: 5%;
 }
-

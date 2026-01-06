@@ -11,7 +11,6 @@
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -54,8 +53,10 @@
 .nav {
   flex: 1;
   display: flex;
+  flex-wrap: wrap; /* ⭐ tillader linjeskift */
   justify-content: center;
-  overflow: hidden;
+  gap: 12px; /* gør det pænt når de bryder linjen */
+  overflow: visible; /* så de ikke bliver klippet */
 }
 
 .themeButton {
