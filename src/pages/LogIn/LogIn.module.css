@@ -45,6 +45,7 @@
 }
 
 .registerLink {
-  font-size: 1.25rem;
+  color: blue;
+  font-size: 1.25em;
   margin: 10px;
 }

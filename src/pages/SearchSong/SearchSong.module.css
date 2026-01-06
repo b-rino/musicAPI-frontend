@@ -46,7 +46,6 @@
   background-color: var(--table-hover-bg);
 }
 
-/* Modal styling */
 .modal {
   position: fixed;
   top: 0;

@@ -64,7 +64,9 @@ export default function LogIn() {
             <button type="submit">Login</button>
           </form>
           <div className={styles.registerLink}>
-            <Link to="/register">click here to sign up</Link>
+            <Link to="/register" className={styles.registerLink}>
+              click here to sign up
+            </Link>
           </div>
           {error && <p>{error}</p>}
         </>
