@@ -21,6 +21,39 @@ export default function Home() {
             by an external music API. Log in to explore your playlists — or
             create an account to get started.
           </p>
+          <br></br>
+          <p>You can explore the full source code here:</p>
+          <ul className={styles.githubList}>
+            <li>
+              <a
+                href="https://github.com/b-rino/musicAPI-frontend"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Frontend Repository
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/b-rino/MusicAPI"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Backend Repository
+              </a>
+            </li>
+          </ul>
+          <p>Use the admin login to explore the full experience:</p>
+          <p>
+            <strong>Username:</strong> Admin
+            <br />
+            <strong>Password:</strong> Admin
+          </p>
+          <br></br>
+          <p>
+            <strong>Disclaimer:</strong> This project is built exclusively for
+            educational purposes and does not contain any sensitive data.
+          </p>
         </div>
         <div className={styles.rightColumn}>
           <img src="/images/music.png" alt="Music" className={styles.image} />

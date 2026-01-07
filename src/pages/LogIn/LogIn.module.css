@@ -20,10 +20,10 @@
 
 .inputForm input {
   width: 100%;
-  max-width: 300px; /* matcher SearchSong */
+  max-width: 300px;
   padding: 0.5rem;
-  margin: 10px auto; /* centrerer */
-  display: block; /* kræves for margin auto */
+  margin: 10px auto;
+  display: block;
   border-radius: 6px;
   border: 1px solid #ccc;
   background-color: white;

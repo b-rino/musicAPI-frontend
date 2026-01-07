@@ -45,3 +45,20 @@
   font-family: cursive;
   font-style: italic;
 }
+
+.githubList {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem 0;
+}
+.githubList li {
+  margin-bottom: 0.3rem;
+}
+.githubList a {
+  color: var(--fg);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.githubList a:hover {
+  opacity: 0.8;
+}
