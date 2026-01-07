@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
+  min-height: 85vh;
 }
 
 .pageTitle {
@@ -13,6 +13,8 @@
 }
 
 .error {
+  margin-top: 200px;
+  font-size: 2rem;
   color: #d9534f;
   margin-bottom: 1rem;
 }

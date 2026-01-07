@@ -69,6 +69,13 @@ export default function Playlists() {
       .catch((err) => setError(facade.extractErrorMessage(err)));
   };
 
+  if (error)
+    return (
+      <div className={styles.container}>
+        <p className={styles.error}>Error: {error}</p>
+      </div>
+    );
+
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Playlists</h1>
@@ -89,7 +96,6 @@ export default function Playlists() {
           </button>
         </form>
       )}
-      {error && <p className={styles.error}>{error}</p>}
       {loggedIn ? (
         playlists.length > 0 ? (
           playlists.map((playlist) => (

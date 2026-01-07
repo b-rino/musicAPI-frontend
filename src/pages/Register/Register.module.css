@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
+  min-height: 85vh;
 }
 
 .pageTitle {
@@ -23,9 +23,8 @@ form input {
   font-size: 1.5rem;
   width: 100%;
   max-width: 300px;
-  padding: 0.2rem;
-  margin: 0.5rem auto;
-  margin-bottom: 2%;
+  padding: 0.5rem;
+  margin: 10px auto;
   display: block;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -42,4 +41,16 @@ form button {
   background-color: rgb(45, 45, 168);
   color: white;
   cursor: pointer;
+}
+
+.message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--fg);
+}
+
+.loggedInMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  color: red;
 }

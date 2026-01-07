@@ -1,8 +1,8 @@
 import "./App.css";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import facade from "../../utils/apiFacade";
 
 function App() {
@@ -10,12 +10,22 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(facade.loggedIn());
   const [userRoles, setUserRoles] = useState([]);
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (facade.loggedIn()) {
+      const [username, roles] = facade.getUsernameAndRoles();
+      setUserRoles(roles);
+      setUsername(username);
+    }
+  }, []);
 
   const logout = () => {
     facade.logout();
     setLoggedIn(false);
     setUserRoles([]);
     setUsername("");
+    navigate("/");
   };
 
   const doLogin = async (user, pass) => {

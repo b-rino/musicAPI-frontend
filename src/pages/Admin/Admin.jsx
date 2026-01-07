@@ -9,7 +9,7 @@ export default function Admin() {
 
   const { userRoles, loggedIn } = useOutletContext();
   const [users, setUsers] = useState([]);
-  const [error, setError] = useState([]);
+  const [error, setError] = useState(null);
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
@@ -43,10 +43,16 @@ export default function Admin() {
     );
   }
 
+  if (error)
+    return (
+      <div className={styles.container}>
+        <p className={styles.error}>Error: {error}</p>
+      </div>
+    );
+
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Admin Panel</h1>
-      {error && <p className={styles.error}>{error}</p>}
       <h2>Users</h2>
       <table className={styles.userTable}>
         <thead>

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
+  min-height: 85vh;
 }
 
 .pageTitle {
@@ -73,9 +73,9 @@
 }
 
 .error {
-  color: #c0392b;
-  font-weight: bold;
-  margin-top: 1rem;
+  margin-top: 200px;
+  font-size: 2rem;
+  color: #d9534f;
 }
 
 .clickableRow {

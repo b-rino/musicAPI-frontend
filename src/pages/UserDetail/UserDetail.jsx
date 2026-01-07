@@ -1,10 +1,11 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 import facade from "../../utils/apiFacade";
 import styles from "./UserDetail.module.css";
 
 export default function UserDetail() {
   const { username } = useParams();
+  const { userRoles, loggedIn } = useOutletContext();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -39,12 +40,28 @@ export default function UserDetail() {
       .catch((err) => setError(facade.extractErrorMessage(err)));
   };
 
+  if (!loggedIn || !userRoles.includes("Admin")) {
+    return (
+      <div className={styles.container}>
+        <h1 className={styles.pageTitle}>Access Denied</h1>
+
+        <p>You do not have permission to view this page.</p>
+      </div>
+    );
+  }
+
+  if (error)
+    return (
+      <div className={styles.container}>
+        <p className={styles.error}>Error: {error}</p>
+      </div>
+    );
+
   if (!user) return <p>Loading...</p>;
 
   return (
     <div className={styles.container}>
-      <h1>User Detail: {user.username}</h1>
-      {error && <p className={styles.error}>{error}</p>}
+      <h1 className={styles.pageTitle}>User Detail: {user.username}</h1>
       <p>
         <strong>Roles:</strong> {user.roles.join(", ")}
       </p>
@@ -85,12 +102,14 @@ export default function UserDetail() {
         <p>No playlists</p>
       )}
 
-      <button onClick={deleteUser} className={styles.deleteBtn}>
-        Delete User
-      </button>
-      <button onClick={makeAdmin} className={styles.adminBtn}>
-        Make Admin
-      </button>
+      <div className={styles.buttons}>
+        <button onClick={deleteUser} className={styles.deleteBtn}>
+          Delete User
+        </button>
+        <button onClick={makeAdmin} className={styles.adminBtn}>
+          Make Admin
+        </button>
+      </div>
     </div>
   );
 }

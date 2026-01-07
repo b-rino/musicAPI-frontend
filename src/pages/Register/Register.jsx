@@ -61,11 +61,11 @@ export default function Register() {
             />
             <button type="submit">Register</button>
           </form>
-          {message && <p>{message}</p>}
+          {message && <p className={styles.message}>{message}</p>}
         </div>
       ) : (
         <div>
-          <p>You are already logged in!</p>
+          <p className={styles.loggedInMessage}>You are already logged in!</p>
         </div>
       )}
     </div>
