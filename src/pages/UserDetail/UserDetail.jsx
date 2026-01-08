@@ -62,12 +62,9 @@ export default function UserDetail() {
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>User Detail: {user.username}</h1>
-      <p>
-        <strong>Roles:</strong> {user.roles.join(", ")}
-      </p>
-      <p>
-        <strong>Playlists:</strong>
-      </p>
+      <h2 className={styles.headlines}>Roles:</h2>
+      <h3>{user.roles.join(", ")}</h3>
+      <h2 className={styles.headlines}>Playlists:</h2>
       {user.playlists.length > 0 ? (
         <ul className={styles.playlistList}>
           {user.playlists.map((p) => (

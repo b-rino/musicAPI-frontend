@@ -133,6 +133,7 @@ export default function Playlists() {
                       <td>
                         <button
                           onClick={() => removeSong(playlist.id, song.id)}
+                          className={styles.removeButton}
                         >
                           Remove
                         </button>

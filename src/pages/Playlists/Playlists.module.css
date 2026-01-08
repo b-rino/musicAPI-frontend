@@ -88,3 +88,12 @@ table tr:nth-child(even) {
   align-items: center;
   justify-content: center;
 }
+
+.removeButton {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
