@@ -90,7 +90,7 @@ table tr:nth-child(even) {
 }
 
 .removeButton {
-  background-color: #744179;
+  background-color: #d9534f;
   color: white;
   border: none;
   padding: 0.6rem 1rem;
